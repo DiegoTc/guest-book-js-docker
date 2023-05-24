@@ -5,6 +5,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+env:
+  TAG: $(date +%s)
 
 jobs:
 
@@ -20,6 +22,6 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag guestbook:$(date +%s)
+      run: docker build . --file Dockerfile --tag guestbook:$TAG
     - name: Push the image
-      run: docker push ${{secrets.DOCKER_USER}}/guestbook
+      run: docker push ${{secrets.DOCKER_USER}}/guestbook:$TAG
