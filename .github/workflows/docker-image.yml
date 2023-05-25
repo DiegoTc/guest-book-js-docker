@@ -22,4 +22,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/guestbook:$GITHUB_REF_NAME --tag ${{secrets.DOCKER_USER}}/guestbook:$GITHUB_SHA
     - name: Push the image
-      run: docker push ${{secrets.DOCKER_USER}}/guestbook$GITHUB_REF_NAME ${{secrets.DOCKER_USER}}/guestbook:$GITHUB_SHA
+      run: docker push ${{secrets.DOCKER_USER}}/guestbook --all-tags
