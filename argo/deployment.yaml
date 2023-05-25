@@ -14,7 +14,7 @@ spec:
         app: chat-ui
     spec:
       containers:
-        - image: diegotc/guestbook:latest
+        - image: diegotc/guestbook:main
           name: chat-ui
           ports:
             - containerPort: 5000
