@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
         - image: diegotc/guestbook:main
+          imagePullPolicy: always
           name: chat-ui
           ports:
             - containerPort: 5000
