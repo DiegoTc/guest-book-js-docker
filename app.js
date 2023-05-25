@@ -10,6 +10,10 @@ app.use(express.static(__dirname + "/public"));
 app.get("/", (req, res) => {
 	res.sendFile(__dirname + "/index.html");
 });
+//status
+app.get("/status", (req, res) => {
+	res.send("Hi");
+});
 
 // socket connection
 io.on('connection', (socket) => {
