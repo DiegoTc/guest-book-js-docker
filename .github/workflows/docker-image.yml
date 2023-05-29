@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+#    - uses: actions/checkout@v3
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -29,7 +29,9 @@ jobs:
       run: |
         ls -lah
         pwd
-        sed -i '' -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$GITHUB_SHA/g" argo/deployment.yaml
+        new_ver=$GITHUB_SHA
+        echo $new_var
+        sed -i '' -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" argo/deployment.yaml
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
