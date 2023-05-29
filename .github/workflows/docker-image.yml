@@ -25,5 +25,19 @@ jobs:
       run: docker push ${{secrets.DOCKER_USER}}/guestbook --all-tags
     - name: 🏗 Set up yq
       uses: frenck/action-setup-yq@v1
-#    - name: Replace Image
-#      run: yq '.spec.template.spec.containers.[0].image = "${{secrets.DOCKER_USER}}/guestbook:$GITHUB_SHA"' argo/deployment.yaml
+    - name: Print
+      run: echo $GITHUB_SHA
+    - name: Create tmp folder
+      run: |
+        tmp_dir=$(mktemp -d)
+        echo $tmp_dir
+    - name: Checkout tools repo
+      uses: actions/checkout@v3
+      with:
+        path: $tmp_dir
+    - name: Replace image
+      run: sed -i '' -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$GITHUB_SHA/g" $tmp_dir/argo/deployment.yaml
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
