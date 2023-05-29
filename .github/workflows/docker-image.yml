@@ -23,12 +23,8 @@ jobs:
       run: docker build . --file Dockerfile  --tag ${{secrets.DOCKER_USER}}/guestbook:$GITHUB_SHA
     - name: Push the image
       run: docker push ${{secrets.DOCKER_USER}}/guestbook --all-tags
-    - name: 🏗 Set up yq
-      uses: frenck/action-setup-yq@v1
     - name: Print
       run: echo $GITHUB_SHA
-    - name: Checkout tools repo
-      uses: actions/checkout@v3
     - name: Replace image
       run: |
         ls -lah
