@@ -27,16 +27,13 @@ jobs:
       uses: frenck/action-setup-yq@v1
     - name: Print
       run: echo $GITHUB_SHA
-    - name: Create tmp folder
-      run: |
-        tmp_dir=$(mktemp -d)
-        echo $tmp_dir
     - name: Checkout tools repo
       uses: actions/checkout@v3
-      with:
-        path: $tmp_dir
     - name: Replace image
-      run: sed -i '' -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$GITHUB_SHA/g" $tmp_dir/argo/deployment.yaml
+      run: |
+        ls -lah
+        pwd
+        sed -i '' -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$GITHUB_SHA/g" argo/deployment.yaml
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
