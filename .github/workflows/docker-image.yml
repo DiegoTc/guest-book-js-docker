@@ -33,7 +33,7 @@ jobs:
         echo $new_var
         cd argo
         ls -lah
-        sed -i '' -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
+        sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
