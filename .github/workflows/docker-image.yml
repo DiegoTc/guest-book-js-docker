@@ -14,8 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: tag
-    - uses: HackerHappyHour/tagging-strategy@v3
+    - name: Tagging
+      uses: HackerHappyHour/tagging-strategy@v3
       with:
         tag_name: '1.0.0'
         tags: '%X%'
