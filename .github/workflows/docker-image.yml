@@ -43,7 +43,7 @@ jobs:
         echo ${{ steps.tagging-strategy.outputs.tags }}
         ls -lah
         pwd
-        new_ver=${{ steps.tagging-strategy.outputs.tags }}
+        new_ver= echo ${{ steps.tagging-strategy.outputs.tags }} | sed 's/^.*://g'
         echo $new_var
         cd argo
         ls -lah
