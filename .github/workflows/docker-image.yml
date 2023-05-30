@@ -14,22 +14,31 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: tag
+    - uses: HackerHappyHour/tagging-strategy@v3
+      with:
+        tag_name: '1.0.0'
+        tags: '%X%'
+        image_name: ${{secrets.DOCKER_USER}}/guestbook
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile  --tag ${{secrets.DOCKER_USER}}/guestbook:$GITHUB_SHA
-    - name: Push the image
-      run: docker push ${{secrets.DOCKER_USER}}/guestbook --all-tags
-    - name: Print
-      run: echo $GITHUB_SHA
+    - name: Build and Push
+      with:
+        tags: ${{ steps.tagging-strategy.outputs.tags }}
+#    - name: Build the Docker image
+#      run: docker build . --file Dockerfile  --tag ${{secrets.DOCKER_USER}}/guestbook:$GITHUB_SHA
+#    - name: Push the image
+#      run: docker push ${{secrets.DOCKER_USER}}/guestbook --all-tags
+#    - name: Print
+#      run: echo $GITHUB_SHA
     - name: Replace image
       run: |
         ls -lah
         pwd
-        new_ver=$GITHUB_SHA
+        new_ver=${{ steps.tagging-strategy.outputs.tags }}
         echo $new_var
         cd argo
         ls -lah
