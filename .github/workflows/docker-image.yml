@@ -40,15 +40,11 @@ jobs:
 #      run: echo $GITHUB_SHA
     - name: Replace image
       run: |
-        echo ${{ steps.tagging-strategy.outputs.tags }}
-        ls -lah
-        pwd
         new_ver= echo ${{ steps.tagging-strategy.outputs.tags }} | sed 's/^.*://g'
         echo $new_var
         cd argo
-        ls -lah
         sed -i -e 's/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g' deployment.yaml
-#    - name: Commit & Push changes
-#      uses: actions-js/push@master
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
