@@ -30,7 +30,7 @@ jobs:
     - name: Build and Push
       uses: docker/build-push-action@v4
       with:
-        tags: ${{ steps.tagging-strategy.outputs.tag }}
+        tags: ${{ steps.tagging-strategy.outputs.tags }}
         push: true
 #    - name: Build the Docker image
 #      run: docker build . --file Dockerfile  --tag ${{secrets.DOCKER_USER}}/guestbook:$GITHUB_SHA
@@ -40,9 +40,10 @@ jobs:
 #      run: echo $GITHUB_SHA
     - name: Replace image
       run: |
+        echo ${{ steps.tagging-strategy.outputs.tags }}
         ls -lah
         pwd
-        new_ver=${{ steps.tagging-strategy.outputs.tag }}
+        new_ver=${{ steps.tagging-strategy.outputs.tags }}
         echo $new_var
         cd argo
         ls -lah
