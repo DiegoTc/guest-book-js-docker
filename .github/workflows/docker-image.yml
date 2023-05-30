@@ -18,7 +18,7 @@ jobs:
       uses: HackerHappyHour/tagging-strategy@v3
       with:
         tag_name: '1.0.0'
-        tags: '%X%'
+        tags: '%X.Y%.%Z'
         image_name: ${{secrets.DOCKER_USER}}/guestbook
     - name: docker login
       env:
@@ -30,7 +30,7 @@ jobs:
     - name: Build and Push
       uses: docker/build-push-action@v4
       with:
-        tags: ${{ steps.tagging-strategy.outputs.tags }}
+        tags: ${{ steps.tagging-strategy.outputs.tag }}
         push: true
 #    - name: Build the Docker image
 #      run: docker build . --file Dockerfile  --tag ${{secrets.DOCKER_USER}}/guestbook:$GITHUB_SHA
@@ -42,7 +42,7 @@ jobs:
       run: |
         ls -lah
         pwd
-        new_ver=${{ steps.tagging-strategy.outputs.tags }}
+        new_ver=${{ steps.tagging-strategy.outputs.tag }}
         echo $new_var
         cd argo
         ls -lah
