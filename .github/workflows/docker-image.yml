@@ -17,7 +17,6 @@ jobs:
     - id: tagging-strategy
       uses: HackerHappyHour/tagging-strategy@v3
       with:
-        tag_name: '1.0.0'
         tags: '%X.Y.Z%'
         image_name: ${{secrets.DOCKER_USER}}/guestbook
     - name: docker login
