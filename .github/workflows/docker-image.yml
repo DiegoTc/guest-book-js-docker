@@ -20,7 +20,7 @@ jobs:
       with:
         images: ${{secrets.DOCKER_USER}}/guestbook
         tags: |
-          type=raw,value={{date 'YYYY..MM.DD.hh.mm.ss'}}
+          type=raw,value={{date 'YYYY.MM.DD.hh.mm.ss'}}
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
