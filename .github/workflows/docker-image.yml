@@ -39,7 +39,7 @@ jobs:
         echo $new_var
         cd argo
         sed -i -e 's/diegotc\/guestbook:.*/diegotc\/guestbook:$new_var/g' deployment.yaml
-    - name: Commit & Push changes
-      uses: actions-js/push@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Commit & Push changes
+#      uses: actions-js/push@master
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
