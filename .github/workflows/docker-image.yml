@@ -34,7 +34,7 @@ jobs:
       with:
         tags: ${{ steps.meta.outputs.tags }}
         push: true
-        platforms: "linux/arm64,linux/amd64,linux/arm,linux/i386"
+        platforms: "linux/arm64,linux/amd64,linux/arm"
 #    - name: Replace image
 #      run: |
 #        ls -lah
