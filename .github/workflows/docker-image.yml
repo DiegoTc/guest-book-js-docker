@@ -46,7 +46,7 @@ jobs:
       run: |
         ls -lah
         pwd
-        new_ver= echo ${{ steps.meta.outputs.tags }} | sed 's/^.*://g'
+        new_ver=(echo ${{ steps.meta.outputs.tags }} | sed 's/^.*://g')
         echo "Opcion1"
         cd argo
         ls -lah
