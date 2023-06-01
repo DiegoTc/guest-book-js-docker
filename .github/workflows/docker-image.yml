@@ -50,7 +50,9 @@ jobs:
         echo $new_ver
         cd argo
         ls -lah
+        echo $new_ver
         sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
+        echo $new_ver
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
