@@ -35,11 +35,24 @@ jobs:
         push: true
     - name: Replace image
       run: |
-        new_var= echo ${{ steps.meta.outputs.tags }} | sed 's/^.*://g'
+        ls -lah
+        pwd
+        new_ver=$GITHUB_SHA
         echo $new_var
         cd argo
-        sed -i -e 's/diegotc\/guestbook:.*/diegotc\/guestbook:$new_var/g' deployment.yaml
+        ls -lah
+        sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Replace image
+#      run: |
+#        new_var= echo ${{ steps.meta.outputs.tags }} | sed 's/^.*://g'
+#        echo $new_var
+#        cd argo
+#        sed -i -e 's/diegotc\/guestbook:.*/diegotc\/guestbook:$new_var/g' deployment.yaml
+#    - name: Commit & Push changes
+#      uses: actions-js/push@master
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
