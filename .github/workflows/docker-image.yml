@@ -33,24 +33,24 @@ jobs:
       with:
         tags: ${{ steps.meta.outputs.tags }}
         push: true
-    - name: Replace image
-      run: |
-        ls -lah
-        pwd
-        new_ver=$GITHUB_SHA
-        echo $new_ver
-        cd argo
-        ls -lah
-        sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
 #    - name: Replace image
 #      run: |
 #        ls -lah
 #        pwd
-#        new_ver= echo ${{ steps.meta.outputs.tags }} | sed 's/^.*://g'
+#        new_ver=$GITHUB_SHA
 #        echo $new_ver
 #        cd argo
 #        ls -lah
 #        sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
+    - name: Replace image
+      run: |
+        ls -lah
+        pwd
+        new_ver= echo ${{ steps.meta.outputs.tags }} | sed 's/^.*://g'
+        echo $new_ver
+        cd argo
+        ls -lah
+        sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
