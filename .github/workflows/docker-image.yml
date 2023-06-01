@@ -47,11 +47,12 @@ jobs:
         ls -lah
         pwd
         new_ver= echo ${{ steps.meta.outputs.tags }} | sed 's/^.*://g'
+        echo "Opcion1"
         cd argo
         ls -lah
         echo $new_ver
         sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
-        echo $new_ver
+        echo "Opcion 2" + $new_ver
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
