@@ -14,7 +14,7 @@ spec:
         app: chat-ui
     spec:
       containers:
-        - image: diegotc/guestbook:
+        - image: diegotc/guestbook:''
           imagePullPolicy: Always
           name: chat-ui
           ports:
