@@ -20,7 +20,7 @@ jobs:
       with:
         images: ${{secrets.DOCKER_USER}}/guestbook
         tags: |
-          type=raw,value={{date 'YYYY.MM.DD.hh.mm.ss'}}
+          type=raw,value={{date 'YYYYMMDD-hhmmss'}}
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -50,7 +50,7 @@ jobs:
         echo $new_ver
         cd argo
         ls -lah
-        sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:'$new_ver'/g" deployment.yaml
+        sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
