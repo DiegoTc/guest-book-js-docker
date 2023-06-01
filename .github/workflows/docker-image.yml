@@ -34,7 +34,7 @@ jobs:
       with:
         tags: ${{ steps.meta.outputs.tags }}
         push: true
-        platforms: "linux/arm64,linux/amd64,linux/arm"
+        platforms: "linux/arm64,linux/amd64,linux/arm, linux/386"
     - name: Replace image
       run: |
         new_ver=$(echo ${{ steps.meta.outputs.tags }} | sed 's/^.*://g')
