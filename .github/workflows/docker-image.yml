@@ -47,7 +47,7 @@ jobs:
         ls -lah
         pwd
         new_ver=echo ${{ steps.meta.outputs.tags }} | sed 's/^.*://g'
-        echo $new_var
+        echo $new_ver
         cd argo
         ls -lah
         sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
