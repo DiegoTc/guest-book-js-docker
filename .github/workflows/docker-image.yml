@@ -41,7 +41,7 @@ jobs:
         cd argo
         echo $new_ver
         sed -i -e "s/diegotc\/guestbook:.*/diegotc\/guestbook:$new_ver/g" deployment.yaml
-#    - name: Commit & Push changes
-#      uses: actions-js/push@master
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
