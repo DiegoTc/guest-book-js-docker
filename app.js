@@ -7,7 +7,7 @@ var io = require("socket.io")(http);
 app.use(express.static(__dirname + "/public"));
 
 // homepage
-app.get("/home", (req, res) => {
+app.get("/", (req, res) => {
 	res.sendFile(__dirname + "/index.html");
 });
 //status
@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
 	});
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 
 // port to listen
 http.listen(PORT, function(){
