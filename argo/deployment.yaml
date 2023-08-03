@@ -20,23 +20,23 @@ spec:
           ports:
             - containerPort: 5500
 
-#          livenessProbe:
-#            httpGet:
-#              path: /status
-#              port: 5500
-#            initialDelaySeconds: 15
-#            periodSeconds: 15
-#
-#          startupProbe:
-#            httpGet:
-#              path: /status
-#              port: 5500
-#            failureThreshold: 10
-#            periodSeconds: 10
-#
-#          readinessProbe:
-#            httpGet:
-#              path: /status
-#              port: 5500
-#            initialDelaySeconds: 15
-#            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 5500
+            initialDelaySeconds: 15
+            periodSeconds: 15
+
+          startupProbe:
+            httpGet:
+              path: /status
+              port: 5500
+            failureThreshold: 10
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: 5500
+            initialDelaySeconds: 15
+            periodSeconds: 10
