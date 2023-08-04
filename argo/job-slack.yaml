@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: slack
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+        - name: slack
+          image: curlimages/curl
+          command: ["sh", "-c"]
+          args:
+            - >
+              curl -d 'text=Running from docker container part 3' -d 'channel=C05L9SNTDN1' -H 'Authorization: Bearer '"$SLACK_TOKEN"'' -X POST https://slack.com/api/chat.postMessage
+          env:
+            - name: SLACK_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: slack
+                  key: token
+      restartPolicy: Never
+  backoffLimit: 4
