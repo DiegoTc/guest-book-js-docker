@@ -1,4 +1,4 @@
-FROM node:20.3.0-slim
+FROM node:20.20.2-slim
 WORKDIR /app
 COPY . /app
 RUN npm install
